@@ -26,7 +26,9 @@ li {
 }
 
 .nav {
-  margin-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.3rem;
 }
 
 .nav--link {
@@ -40,8 +42,11 @@ li {
   margin-right: 0.7rem;
 }
 
+.nav--link__light {
+  color: black;
+}
+
 .post--link {
-  color: rgb(187, 46, 31);
   font-weight: bold;
   text-decoration: none;
 }
@@ -51,10 +56,27 @@ li {
   margin-top: 0.5rem;
 }
 
-.post .post--meta a {
+.post .post--meta .post--meta--link__light {
   color: black;
 }
 
 .dark {
-  background-color: black;
+  color: #dadada;
+  background: #1c2022;
+  min-height: 100%;
+}
+
+.light-link {
+  color: rgb(187, 46, 31);
+}
+
+.nav--link__dark,
+.post .post--meta .post--meta--link__dark,
+.dark-link {
+  color: rgb(203, 203, 203);
+}
+
+.btn-clear {
+  border: none;
+  background: transparent;
 }

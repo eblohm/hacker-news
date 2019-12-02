@@ -1,22 +1,19 @@
-import React from 'react';
-import { ConvertDate } from '../utils/helpers';
+import React from "react";
+import PostTitle from "./PostTitle";
+import PostMeta from "./PostMeta";
 
 const PostsList = ({ posts }) => {
   return (
     <ul>
       {posts.map(post => (
         <li key={post.url} className="post">
-          <a href={post.url} className="post--link">
-            {post.title}
-          </a>
-          <p className="post--meta">
-            by{' '}
-            <a href="#" className="post--author">
-              {post.by}
-            </a>{' '}
-            on {ConvertDate(post.time)} with <a href="#">{post.descendants}</a>{' '}
-            comments
-          </p>
+          <PostTitle url={post.url} title={post.title} id={post.id} />
+          <PostMeta
+            by={post.by}
+            date={post.time}
+            comments={post.descendants}
+            id={post.id}
+          />
         </li>
       ))}
     </ul>

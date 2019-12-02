@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import PostsList from "./PostsList";
+import Loading from "./Loading";
 import { fetchMainPosts } from "../utils/api";
 
 export default class Posts extends Component {
@@ -14,6 +15,12 @@ export default class Posts extends Component {
     this.handleFetch();
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.type !== this.props.type) {
+      this.handleFetch();
+    }
+  }
+
   handleFetch = () => {
     this.setState({
       posts: null,
@@ -21,7 +28,7 @@ export default class Posts extends Component {
       loading: true
     });
 
-    fetchMainPosts(`top`)
+    fetchMainPosts(this.props.type)
       .then(posts =>
         this.setState({
           posts,
@@ -44,7 +51,7 @@ export default class Posts extends Component {
 
     // Need to check that loading is false to trigger a re-render when the posts have been fetched
     if (loading) {
-      return <div>Loading</div>;
+      return <Loading />;
     }
 
     if (error) {
