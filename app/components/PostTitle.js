@@ -15,6 +15,6 @@ export default function PostTitle(props) {
 }
 
 PostTitle.propTypes = {
-  //url: PropTypes.string.isRequired,
+  url: PropTypes.string,
   title: PropTypes.string.isRequired
 };

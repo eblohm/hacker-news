@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import PostTitle from "./PostTitle";
 import PostMeta from "./PostMeta";
 
@@ -6,7 +7,7 @@ const PostsList = ({ posts }) => {
   return (
     <ul>
       {posts.map(post => (
-        <li key={post.url} className="post">
+        <li key={post.id} className="post">
           <PostTitle url={post.url} title={post.title} id={post.id} />
           <PostMeta
             by={post.by}
@@ -18,6 +19,10 @@ const PostsList = ({ posts }) => {
       ))}
     </ul>
   );
+};
+
+PostsList.propTypes = {
+  posts: PropTypes.array.isRequired
 };
 
 export default PostsList;

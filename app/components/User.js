@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import queryString from "query-string";
 import { fetchUser, fetchPosts } from "../utils/api";
 import { ConvertDate } from "../utils/helpers";
-import { ThemeConsumer } from "../contexts/theme";
 import PostsList from "./PostsList";
 import Loading from "./Loading";
 
@@ -56,23 +55,24 @@ export default class User extends Component {
     }
 
     return (
-      <ThemeConsumer>
-        {({ theme }) => (
-          <>
-            <div className="user--info">
-              <h1>{user.id}</h1>
-              <p>
-                joined <strong>{ConvertDate(user.created)}</strong> has{" "}
-                <strong>{user.karma}</strong> karma
-              </p>
-            </div>
-            <div className="user--posts">
-              <h1>Posts</h1>
-              <PostsList posts={userPosts} />
-            </div>
-          </>
-        )}
-      </ThemeConsumer>
+      <>
+        <div className="user--info">
+          <h1>{user.id}</h1>
+          <p>
+            joined <strong>{ConvertDate(user.created)}</strong> has{" "}
+            <strong>{user.karma}</strong> karma
+          </p>
+          <p dangerouslySetInnerHTML={{ __html: user.about }} />
+        </div>
+        <div className="user--posts">
+          <h1>Posts</h1>
+          {userPosts.length > 0 ? (
+            <PostsList posts={userPosts} />
+          ) : (
+            <p>This user has not posted yet</p>
+          )}
+        </div>
+      </>
     );
   }
 }
